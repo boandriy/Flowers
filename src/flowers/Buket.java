@@ -6,6 +6,7 @@ public class Buket {
 	
 	private int lastIndex = 0;
 	
+	// update test
 	public void addFlower(Flower nw){
 		flowers[lastIndex] = nw;
 		lastIndex++;
