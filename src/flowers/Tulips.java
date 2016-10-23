@@ -1,10 +1,16 @@
 package flowers;
 
 public class Tulips extends Flower {
-	public Tulips(double stemSize, boolean fresh){
-		this.stemSize = stemSize;
-		this.fresh = fresh;
-		this.price = 20;
+
+	public Tulips(FlowerSpec flowerSpec) {
+		super(flowerSpec);
+		setColor(FlowerColor.YELLOW);
 	}
+
+	public boolean hasSpikes(){
+		return false;
+	}
+	
+	
 	
 }

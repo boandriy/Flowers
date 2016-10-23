@@ -1,22 +1,35 @@
 package flowers;
 
-public class Flower {
-	protected boolean fresh = true; 
-	protected double stemSize = 0;
-	protected int price = 0;
+abstract public class Flower {
 	
+	protected FlowerSpec flowerSpec;
+	FlowerColor color = FlowerColor.NO_COLOR;
+	
+	public Flower (FlowerSpec flowerSpec) {
+		this.flowerSpec = flowerSpec; 
+	}
 	
 	public void setPrice(int price){
-		this.price = price;
+		this.flowerSpec.setPrice(price);;
 	}
 	public double getPrice(){
-		return price;
+		return flowerSpec.getPrice();
 	}
 	
 	public void setStemSize(double stemSize){
-		this.stemSize = stemSize;
+		flowerSpec.setStemSize(stemSize);;
 	}
 	public double getStemSize(){
-		return stemSize;
+		return flowerSpec.getStemSize();
 	}
+	
+	public FlowerColor getColor() {
+		return color;
+	}
+	
+	public void setColor(FlowerColor color) {
+		this.color = color;
+	}
+
+	abstract boolean hasSpikes();
 }

@@ -4,19 +4,23 @@ public class Main {
 
 	public static void main(String[] args) {
 		//Flowers
-		Orchid orch1 = new Orchid(10,true);
-		Orchid orch2 = new Orchid(15.5,false);
-		Tulips tulip1 = new Tulips(13.2, true);
-		Tulips tulip2 = new Tulips(24, true);
-		Tulips tulip3 = new Tulips(18, false);
+		Orchid orch1 = new Orchid(new FlowerSpec(10,true,25));
+		Rose rose1 = new Rose(new FlowerSpec(10,true,25));
+		Tulips tulip1 = new Tulips(new FlowerSpec(10,true,25));
+		Tulips tulip2 = new Tulips(new FlowerSpec(10,true,25));
+		Rose rose2 = new Rose(new FlowerSpec(10,true,25));
 		Buket buket = new Buket();
 		buket.addFlower(orch1);
-		buket.addFlower(orch2);
+		buket.addFlower(rose1);
 		buket.addFlower(tulip1);
 		buket.addFlower(tulip2);
-		buket.addFlower(tulip3);
+		buket.addFlower(rose2);
 		buket.sortFlowers();
 		buket.displayStemp();
+		for(Flower flower: buket.getSpikeFlowers()){
+			System.out.println(flower.getStemSize());
+		}
+		
 		
 		//Presents
 		Sinikers snik = new Sinikers(3,false);

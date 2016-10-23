@@ -13,7 +13,7 @@ public class Buket {
 	} 
 	public void displayStemp(){
 		for(Flower flower: this.flowers){
-			System.out.println(flower.stemSize);
+			System.out.println(flower.getStemSize());
 		}
 	}
 	
@@ -21,13 +21,13 @@ public class Buket {
 		Flower[] sortedFlowers = new Flower[max];
 		int count = 0;
 		for (Flower flower:	flowers){
-			if(flower.fresh){
+			if(flower.flowerSpec.fresh){
 				sortedFlowers[count] = flower;
 				count += 1;
 			}
 		}
 		for (Flower flower: flowers){
-			if(!flower.fresh){
+			if(!flower.flowerSpec.fresh){
 				sortedFlowers[count] = flower;
 				count +=1;
 			}
@@ -37,7 +37,7 @@ public class Buket {
 	public int price(){
 		int price = 0; 
 		for (Flower flower: this.flowers){
-			price += flower.price;
+			price += flower.getPrice();
 		}
 		return price;
 	}
@@ -46,19 +46,53 @@ public class Buket {
 		int count = 0;
 		
 		for(Flower flower : buket.flowers){
-			if(flower.stemSize >= from && flower.stemSize <= to){
+			if(flower.getStemSize() >= from && flower.getStemSize() <= to){
 				count += 1;
 			}
 		}
 		Flower[] flowersByStemp = new Flower[count];
 		int i = 0;
 		for(Flower flower : buket.flowers){
-			if(flower.stemSize >= from && flower.stemSize <= to){
+			if(flower.getStemSize() >= from && flower.getStemSize() <= to){
 				flowersByStemp[i] = flower;
 				i++;
 			}
 		}
 		
 		return flowersByStemp;
+	}
+	public Flower [] getSpikeFlowers(){
+		int count = 0;
+		
+		for(Flower flower : flowers){
+			if(flower.hasSpikes()){
+				count += 1;
+			}
+		}
+		Flower[] spikesFlowers = new Flower[count];
+		count = 0;
+		for(Flower flower : flowers){
+			if(flower.hasSpikes()){
+				spikesFlowers[count++] = flower;
+			}
+		}
+		return spikesFlowers;
+	}
+	public Flower[] search(FlowerSpec spec){
+		int count = 0;
+		for (Flower flower : flowers){
+			if(flower.getPrice() == spec.getPrice() || flower.getStemSize() == spec.getStemSize() && flower.flowerSpec.fresh == spec.fresh){
+				count += 1;
+			}
+		}
+		count = 0;
+		Flower[] foundFlowers = new Flower[count]; 
+		for (Flower flower : flowers){
+			if(flower.getPrice() == spec.getPrice() || flower.getStemSize() == spec.getStemSize() && flower.flowerSpec.fresh == spec.fresh){
+				foundFlowers[count] = flower;
+				count += 1;
+			}
+		}
+		return foundFlowers;
 	}
 }
